@@ -17,6 +17,17 @@ class Twilio {
   getTwilio() {
     this.client;
   }
+
+  async sendVerifyAsync(to, channel) {
+    const data = await this.client.verify
+      .services(this.verify)
+      .verifications.create({
+        to,
+        channel,
+      });
+    console.log("sendVerify:", data);
+    return data;
+  }
 }
 
 const instance = new Twilio();
