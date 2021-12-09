@@ -14,6 +14,7 @@ function App() {
     await axios.post("/login", {
       to: user.mobileNumber,
       username: user.username,
+      channel: "sms",
     });
   }
 
