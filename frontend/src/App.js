@@ -7,6 +7,8 @@ function App() {
   const [user, setUser] = useImmer({
     username: "",
     mobileNumber: "",
+    verificationCode: "",
+    verificationSent: false,
   });
 
   async function sendSmsCode() {
@@ -15,6 +17,9 @@ function App() {
       to: user.mobileNumber,
       username: user.username,
       channel: "sms",
+    });
+    setUser((draft) => {
+      draft.verificationSent = true;
     });
   }
 
