@@ -7,19 +7,18 @@ const socketIo = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const socket = socketIo(server, {
+const io = socketIo(server, {
   cors: {
     origin: "*",
     methods: ["*"],
   },
 });
 
-socket.on("connection", (socket) => {
+io.on("connection", (socket) => {
   console.log("Socket connected", socket.id);
-});
-
-socket.on("disconnect", (socket) => {
-  console.log("Socket disconnected");
+  socket.on("disconnect", () => {
+    console.log("Socket disconnected", socket.id);
+  });
 });
 
 app.use(bodyParser.json());

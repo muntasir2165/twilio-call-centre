@@ -5,19 +5,19 @@ import axios from "./utils/Axios";
 import socket from "./utils/SocketIo";
 
 function App() {
-  useEffect(() => {
-    socket.on("disconnect", () => {
-      console.log("Socket disconnected");
-    });
-    return () => {};
-  }, []);
-
   const [user, setUser] = useImmer({
     username: "",
     mobileNumber: "",
     verificationCode: "",
     verificationSent: false,
   });
+
+  useEffect(() => {
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected");
+    });
+    return () => {};
+  }, []);
 
   async function sendSmsCode() {
     console.log("Sending SMS");
