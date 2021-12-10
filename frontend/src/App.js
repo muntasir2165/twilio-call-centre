@@ -46,12 +46,16 @@ function App() {
 
   return (
     <div>
-      <Login
-        user={user}
-        setUser={setUser}
-        sendSmsCode={sendSmsCode}
-        sendVerificationCode={sendVerificationCode}
-      />
+      {storedToken ? (
+        <h1>Call Center</h1>
+      ) : (
+        <Login
+          user={user}
+          setUser={setUser}
+          sendSmsCode={sendSmsCode}
+          sendVerificationCode={sendVerificationCode}
+        />
+      )}
     </div>
   );
 }
