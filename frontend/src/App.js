@@ -4,6 +4,7 @@ import { useImmer } from "use-immer";
 import axios from "./utils/Axios";
 import socket from "./utils/SocketIo";
 import useLocalStorage from "./hooks/useLocalStorage";
+import CallCenter from "./components/CallCenter";
 
 function App() {
   const [user, setUser] = useImmer({
@@ -47,7 +48,7 @@ function App() {
   return (
     <div>
       {storedToken ? (
-        <h1>Call Center</h1>
+        <CallCenter />
       ) : (
         <Login
           user={user}
