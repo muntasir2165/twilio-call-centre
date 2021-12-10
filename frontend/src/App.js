@@ -36,8 +36,9 @@ function App() {
     const response = await axios.post("/verify", {
       to: user.mobileNumber,
       code: user.verificationCode,
+      username: user.username,
     });
-    console.log("verification response", response.data);
+    console.log("verification response");
   }
 
   return (
