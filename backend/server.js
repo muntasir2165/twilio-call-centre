@@ -4,15 +4,24 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
-const { SocketAddress } = require("net");
 
 const app = express();
 const server = http.createServer(app);
-const socket = socketIo(server);
+const socket = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["*"],
+  },
+});
 
 socket.on("connection", (socket) => {
-  console.log("Socket connected", socket);
+  console.log("Socket connected", socket.id);
 });
+
+socket.on("disconnect", (socket) => {
+  console.log("Socket disconnected");
+});
+
 app.use(bodyParser.json());
 app.use(cors());
 
