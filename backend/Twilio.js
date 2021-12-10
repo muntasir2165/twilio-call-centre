@@ -25,7 +25,7 @@ class Twilio {
         to,
         channel,
       });
-    console.log("sendVerify:", data);
+    console.log("sendVerify");
     return data;
   }
 
@@ -33,7 +33,7 @@ class Twilio {
     const data = await this.client.verify
       .services(this.verify)
       .verificationChecks.create({ to, code });
-    console.log("verifyCode:", data);
+    console.log("verifyCode");
     return data;
   }
 }

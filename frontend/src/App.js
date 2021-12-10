@@ -3,6 +3,7 @@ import Login from "./components/Login";
 import { useImmer } from "use-immer";
 import axios from "./utils/Axios";
 import socket from "./utils/SocketIo";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const [token, setToken] = useState();
@@ -12,6 +13,7 @@ function App() {
     verificationCode: "",
     verificationSent: false,
   });
+  const [storedToken, setStoredToken] = useLocalStorage("token", null);
 
   useEffect(() => {
     socket.on("disconnect", () => {
