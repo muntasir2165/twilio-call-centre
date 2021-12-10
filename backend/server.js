@@ -21,10 +21,12 @@ app.post("/login", async (req, res) => {
   res.send(data);
 });
 
-app.get("/verify", async (req, res) => {
+app.post("/verify", async (req, res) => {
   console.log("Verifying code");
+  const { to, code } = req.body;
   // const data = await twilio.verifyCodeAsync(process.env.MOBILE, req.query.code);
-  const data = await twilio.verifyCodeAsync("+14084665269", req.query.code);
+  // const data = await twilio.verifyCodeAsync("+14084665269", req.query.code);
+  const data = await twilio.verifyCodeAsync(to, code);
   res.send(data);
 });
 
