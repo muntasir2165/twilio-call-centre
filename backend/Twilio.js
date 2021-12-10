@@ -33,7 +33,7 @@ class Twilio {
     const data = await this.client.verify
       .services(this.verify)
       .verificationChecks.create({ to, code });
-    console.log("verifyCodeAsync:", data);
+    console.log("verifyCode:", data);
     return data;
   }
 }

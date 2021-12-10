@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./components/Login";
 import { useImmer } from "use-immer";
 import axios from "./utils/Axios";
 import socket from "./utils/SocketIo";
 
 function App() {
+  const [token, setToken] = useState();
   const [user, setUser] = useImmer({
     username: "",
     mobileNumber: "",
@@ -38,7 +39,8 @@ function App() {
       code: user.verificationCode,
       username: user.username,
     });
-    console.log("verification response");
+    console.log("received token", response.data.token);
+    setToken(response.data.token);
   }
 
   return (
