@@ -6,7 +6,6 @@ import socket from "./utils/SocketIo";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const [token, setToken] = useState();
   const [user, setUser] = useImmer({
     username: "",
     mobileNumber: "",
@@ -42,7 +41,7 @@ function App() {
       username: user.username,
     });
     console.log("received token", response.data.token);
-    setToken(response.data.token);
+    setStoredToken(response.data.token);
   }
 
   return (
