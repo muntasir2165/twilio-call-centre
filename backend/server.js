@@ -2,8 +2,17 @@ const express = require("express");
 const twilio = require("./Twilio");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const http = require("http");
+const socketIo = require("socket.io");
+const { SocketAddress } = require("net");
 
 const app = express();
+const server = http.createServer(app);
+const socket = socketIo(server);
+
+socket.on("connection", (socket) => {
+  console.log("Socket connected", socket);
+});
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -30,6 +39,6 @@ app.post("/verify", async (req, res) => {
   res.send(data);
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);
 });
