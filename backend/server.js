@@ -52,6 +52,16 @@ app.post("/verify", async (req, res) => {
   res.status(401).send("Invalid token");
 });
 
+app.post("/call-new", (req, res) => {
+  console.log("Receive a new call");
+  res.send("ok");
+});
+
+app.post("/call-status-changed", (req, res) => {
+  console.log("Call status changed");
+  res.send("ok");
+});
+
 server.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);
 });
