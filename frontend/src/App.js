@@ -54,7 +54,7 @@ function App() {
   return (
     <div>
       {storedToken ? (
-        <CallCenter />
+        <CallCenter calls={calls} />
       ) : (
         <Login
           user={user}
@@ -63,9 +63,6 @@ function App() {
           sendVerificationCode={sendVerificationCode}
         />
       )}
-      {calls.calls.map((call) => (
-        <h1>{call.data.CallSid}</h1>
-      ))}
     </div>
   );
 }
