@@ -63,8 +63,9 @@ function App() {
           sendVerificationCode={sendVerificationCode}
         />
       )}
-      {calls.calls.length > 0 ??
-        calls.calls.map((call) => <h1>{call.CallSid}</h1>)}
+      {calls.calls.map((call) => (
+        <h1>{call.data.CallSid}</h1>
+      ))}
     </div>
   );
 }

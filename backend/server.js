@@ -23,6 +23,7 @@ io.on("connection", (socket) => {
 });
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 const PORT = 3001;
