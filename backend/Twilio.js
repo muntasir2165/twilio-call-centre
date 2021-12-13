@@ -1,4 +1,6 @@
 const twilio = require("twilio");
+const { Policy } = require("twilio/lib/jwt/taskrouter/TaskRouterCapability");
+const VoiceResponse = require("twilio/lib/twiml/VoiceResponse");
 
 class Twilio {
   phoneNumber = "+1 442 222 2560";
@@ -35,6 +37,19 @@ class Twilio {
       .verificationChecks.create({ to, code });
     console.log("verifyCode");
     return data;
+  }
+
+  voiceResponse(message) {
+    const twiml = new VoiceResponse();
+    twiml.say(
+      {
+        voice: "female",
+        loop: 2,
+      },
+      message
+    );
+
+    return twiml;
   }
 }
 
