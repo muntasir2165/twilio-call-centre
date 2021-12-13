@@ -53,7 +53,10 @@ app.post("/verify", async (req, res) => {
 });
 
 app.post("/call-new", (req, res) => {
-  console.log("Receive a new call");
+  console.log("Received a new call", req.body);
+  io.emit("call-new", {
+    data: req.body,
+  });
   const response = twilio.voiceResponse("Thank you for your call!");
   res.type("text/xml");
   res.send(response.toString());

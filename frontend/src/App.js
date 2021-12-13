@@ -7,6 +7,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import CallCenter from "./components/CallCenter";
 
 function App() {
+  const [calls, setCalls] = useImmer({ calls: [] });
   const [user, setUser] = useImmer({
     username: "",
     mobileNumber: "",
@@ -18,6 +19,11 @@ function App() {
   useEffect(() => {
     socket.on("disconnect", () => {
       console.log("Socket disconnected");
+    });
+    socket.on("call-new", (data) => {
+      setCalls((draft) => {
+        draft.calls.push(data);
+      });
     });
     return () => {};
   }, []);
@@ -57,6 +63,8 @@ function App() {
           sendVerificationCode={sendVerificationCode}
         />
       )}
+      {calls.calls.length > 0 ??
+        calls.calls.map((call) => <h1>{call.CallSid}</h1>)}
     </div>
   );
 }
