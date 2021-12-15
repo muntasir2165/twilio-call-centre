@@ -54,7 +54,7 @@ app.post("/verify", async (req, res) => {
 });
 
 app.post("/call-new", (req, res) => {
-  console.log("Received a new call", req.body);
+  console.log("Received a new call");
   io.emit("call-new", {
     data: req.body,
   });
@@ -64,7 +64,7 @@ app.post("/call-new", (req, res) => {
 });
 
 app.post("/call-status-changed", (req, res) => {
-  console.log("Call status changed", res.body);
+  console.log("Call status changed");
   res.send("ok");
 });
 

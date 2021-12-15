@@ -21,18 +21,18 @@ function App() {
       console.log("Socket disconnected");
     });
 
-    socket.on("call-new", (data) => {
+    socket.on("call-new", ({ data: { CallSid, CallStatus } }) => {
       setCalls((draft) => {
-        draft.calls.push(data);
+        draft.calls.push(CallSid, CallStatus);
       });
     });
 
-    socket.on("enqueue", (data) => {
+    socket.on("enqueue", ({ data: { CallSid: CallSidInput } }) => {
       setCalls((draft) => {
         const index = draft.calls.findIndex(
-          ({ callSid }) => callSid === data.callSid
+          ({ CallSid }) => CallSid === CallSidInput
         );
-        draft.calls[index].data.CallStatus = "enqueue";
+        draft.calls[index].CallStatus = "enqueue";
       });
     });
 

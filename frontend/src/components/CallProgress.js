@@ -8,9 +8,9 @@ function CallProgress({ call }) {
         <Step
           icon="phone"
           title="Ringing"
-          description={call.data.From}
+          description={call.CallSid}
           completed
-        />
+        /> 
         <Step
           icon="cogs"
           title="In queue"

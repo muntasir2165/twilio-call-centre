@@ -44,7 +44,6 @@ class Twilio {
     twiml.say(
       {
         voice: "female",
-        loop: 2,
       },
       message
     );
