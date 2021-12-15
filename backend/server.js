@@ -31,6 +31,17 @@ app.get("/test", (req, res) => {
   res.send("Welcome to Twilio");
 });
 
+app.post("/check-token", (req, res) => {
+  const { token } = req.body;
+  let isValid = false;
+  try {
+    isValid = jwt.verifyToken(token);
+  } catch (error) {
+    console.log(error);
+  }
+  res.send({ isValid });
+});
+
 app.post("/login", async (req, res) => {
   console.log("logging in");
   const { to, username, channel } = req.body;
@@ -58,7 +69,9 @@ app.post("/call-new", (req, res) => {
   io.emit("call-new", {
     data: req.body,
   });
-  const response = twilio.voiceResponse("Thank you for your call! We will put you on hold until the next attendant is free.");
+  const response = twilio.voiceResponse(
+    "Thank you for your call! We will put you on hold until the next attendant is free."
+  );
   res.type("text/xml");
   res.send(response.toString());
 });
