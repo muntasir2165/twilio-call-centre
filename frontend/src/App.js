@@ -29,6 +29,7 @@ function App() {
 
     socket.on("enqueue", ({ data: { CallSid: CallSidInput } }) => {
       setCalls((draft) => {
+        console.log(draft.calls);
         const index = draft.calls.findIndex(
           ({ CallSid }) => CallSid === CallSidInput
         );

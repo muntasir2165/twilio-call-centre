@@ -58,7 +58,7 @@ app.post("/call-new", (req, res) => {
   io.emit("call-new", {
     data: req.body,
   });
-  const response = twilio.voiceResponse("Thank you for your call!");
+  const response = twilio.voiceResponse("Thank you for your call! We will put you on hold until the next attendant is free.");
   res.type("text/xml");
   res.send(response.toString());
 });
