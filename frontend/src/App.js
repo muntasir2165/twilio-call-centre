@@ -67,12 +67,15 @@ function App() {
       {storedToken ? (
         <CallCenter calls={calls} />
       ) : (
-        <Login
-          user={user}
-          setUser={setUser}
-          sendSmsCode={sendSmsCode}
-          sendVerificationCode={sendVerificationCode}
-        />
+        <>
+          <CallCenter calls={calls} />
+          <Login
+            user={user}
+            setUser={setUser}
+            sendSmsCode={sendSmsCode}
+            sendVerificationCode={sendVerificationCode}
+          />
+        </>
       )}
     </div>
   );
