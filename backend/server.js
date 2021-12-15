@@ -64,8 +64,14 @@ app.post("/call-new", (req, res) => {
 });
 
 app.post("/call-status-changed", (req, res) => {
-  console.log("Call status changed");
+  console.log("Call status changed", res.body);
   res.send("ok");
+});
+
+app.post("/enqueue", (req, res) => {
+  const response = twilio.enqueueCall('Customer Service');
+  res.type("text/xml");
+  res.send(response.toString());
 });
 
 server.listen(PORT, () => {
