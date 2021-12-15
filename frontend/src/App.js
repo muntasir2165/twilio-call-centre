@@ -23,7 +23,7 @@ function App() {
 
     socket.on("call-new", ({ data: { CallSid, CallStatus } }) => {
       setCalls((draft) => {
-        draft.calls.push(CallSid, CallStatus);
+        draft.calls.push({CallSid, CallStatus});
       });
     });
 
