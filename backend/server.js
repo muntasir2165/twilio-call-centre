@@ -69,7 +69,9 @@ app.post("/call-status-changed", (req, res) => {
 });
 
 app.post("/enqueue", (req, res) => {
-  const response = twilio.enqueueCall('Customer Service');
+  const response = twilio.enqueueCall("Customer Service");
+  console.log("Enqueuing call");
+  io.emit("enqueue", { data: req.body });
   res.type("text/xml");
   res.send(response.toString());
 });

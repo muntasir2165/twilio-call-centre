@@ -20,11 +20,22 @@ function App() {
     socket.on("disconnect", () => {
       console.log("Socket disconnected");
     });
+
     socket.on("call-new", (data) => {
       setCalls((draft) => {
         draft.calls.push(data);
       });
     });
+
+    socket.on("enqueue", (data) => {
+      setCalls((draft) => {
+        const index = draft.calls.findIndex(
+          ({ callSid }) => callSid === data.callSid
+        );
+        draft.calls[index].data.CallStatus = "enqueue";
+      });
+    });
+
     return () => {};
   }, []);
 
