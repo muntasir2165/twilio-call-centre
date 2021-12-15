@@ -23,13 +23,12 @@ function App() {
 
     socket.on("call-new", ({ data: { CallSid, CallStatus } }) => {
       setCalls((draft) => {
-        draft.calls.push({CallSid, CallStatus});
+        draft.calls.push({ CallSid, CallStatus });
       });
     });
 
     socket.on("enqueue", ({ data: { CallSid: CallSidInput } }) => {
       setCalls((draft) => {
-        console.log(draft.calls);
         const index = draft.calls.findIndex(
           ({ CallSid }) => CallSid === CallSidInput
         );
