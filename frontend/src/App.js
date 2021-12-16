@@ -3,8 +3,9 @@ import Login from "./components/Login";
 import { useImmer } from "use-immer";
 import axios from "./utils/Axios";
 import socket from "./utils/SocketIo";
-import useLocalStorage from "./hooks/useLocalStorage";
+// import useLocalStorage from "./hooks/useLocalStorage";
 import CallCenter from "./components/CallCenter";
+import useTokenFromLocalStorage from "./hooks/useTokenFromLocalStorage";
 
 function App() {
   const [calls, setCalls] = useImmer({ calls: [] });
@@ -14,7 +15,9 @@ function App() {
     verificationCode: "",
     verificationSent: false,
   });
-  const [storedToken, setStoredToken] = useLocalStorage("token", null);
+  // const [storedToken, setStoredToken] = useLocalStorage("token", null);
+  const [storedToken, setStoredToken, isValidToken] =
+    useTokenFromLocalStorage(null);
 
   useEffect(() => {
     socket.on("disconnect", () => {
@@ -64,7 +67,7 @@ function App() {
 
   return (
     <div>
-      {storedToken ? (
+      {isValidToken ? (
         <CallCenter calls={calls} />
       ) : (
         <>
