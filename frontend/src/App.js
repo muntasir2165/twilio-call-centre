@@ -20,6 +20,16 @@ function App() {
     useTokenFromLocalStorage(null);
 
   useEffect(() => {
+    if (isValidToken) {
+      console.log("Valid token");
+      return socket.addToken(storedToken);
+    }
+
+    console.log("Invalid token");
+    socket.removeToken();
+  }, [isValidToken, storedToken]);
+
+  useEffect(() => {
     socket.client.on("disconnect", () => {
       console.log("Socket disconnected");
     });
