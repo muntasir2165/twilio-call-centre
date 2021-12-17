@@ -9,7 +9,7 @@ class Socket {
   }
 
   addToken(token) {
-    this.client = io.connect(this.url);
+    this.client = io.connect(this.url, { query: { token } });
   }
 
   removeToken() {

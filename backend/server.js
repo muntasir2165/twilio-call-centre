@@ -15,6 +15,23 @@ const io = socketIo(server, {
   },
 });
 
+io.use((socket, next) => {
+  console.log("Socket middleware");
+  if (socket.handshake.query && socket.handshake.query.token) {
+    const { token } = socket.handshake.query;
+
+    try {
+      const result = jwt.verifyToken(token);
+      console.log("Token accepted");
+      if (result.username) {
+        return next();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+});
+
 io.on("connection", (socket) => {
   console.log("Socket connected", socket.id);
   socket.on("disconnect", () => {

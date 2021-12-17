@@ -30,6 +30,9 @@ function App() {
   }, [isValidToken, storedToken]);
 
   useEffect(() => {
+    socket.client.on("connect", () => {
+      console.log("Connected");
+    });
     socket.client.on("disconnect", () => {
       console.log("Socket disconnected");
     });
@@ -50,7 +53,7 @@ function App() {
     });
 
     return () => {};
-  }, []);
+  }, [socket.client]);
 
   async function sendSmsCode() {
     console.log("Sending SMS");
