@@ -9,6 +9,7 @@ class Twilio {
   tokenSecret = "J9yw8s11IKY3RbUOYUnGZBOtXdcofrOh";
   accountSid = "AC8ef30fe9afa308d455faf762fc1aebaf";
   verify = "VAfb95dfd46111bbc2475f51210031e625";
+  outgoingAppSid = "AP8b2635d0fd8fd722e3c5ca4f5798ea95";
   client;
   constructor() {
     this.client = twilio(this.tokenSid, this.tokenSecret, {
