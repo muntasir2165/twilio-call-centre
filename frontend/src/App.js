@@ -20,17 +20,17 @@ function App() {
     useTokenFromLocalStorage(null);
 
   useEffect(() => {
-    socket.on("disconnect", () => {
+    socket.client.on("disconnect", () => {
       console.log("Socket disconnected");
     });
 
-    socket.on("call-new", ({ data: { CallSid, CallStatus } }) => {
+    socket.client.on("call-new", ({ data: { CallSid, CallStatus } }) => {
       setCalls((draft) => {
         draft.calls.push({ CallSid, CallStatus });
       });
     });
 
-    socket.on("enqueue", ({ data: { CallSid: CallSidInput } }) => {
+    socket.client.on("enqueue", ({ data: { CallSid: CallSidInput } }) => {
       setCalls((draft) => {
         const index = draft.calls.findIndex(
           ({ CallSid }) => CallSid === CallSidInput
