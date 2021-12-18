@@ -21,6 +21,9 @@ function App() {
 
   useEffect(() => {
     console.log("Twilio token changed");
+    if (twilioToken) {
+      connectTwilioVoiceClient(twilioToken);
+    }
   }, [twilioToken]);
 
   useEffect(() => {
