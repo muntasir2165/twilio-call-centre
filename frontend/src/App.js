@@ -42,7 +42,8 @@ function App() {
       console.log("Socket disconnected");
     });
 
-    socket.client.on("twilioToken", (data) => {
+    socket.client.on("twilio-token", (data) => {
+      console.log("Received token from the backend");
       setTwilioToken(data.token);
     });
 

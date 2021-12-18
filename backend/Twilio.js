@@ -61,12 +61,13 @@ class Twilio {
     return twim;
   }
 
-  getAccessTokenForVoice(identity) {
+  getAccessTokenForVoice = (identity) => {
     console.log(`Access token for ${identity}`);
     const AccessToken = twilio.jwt.AccessToken;
     const VoiceGrant = AccessToken.VoiceGrant;
+    const outgoingAppSid = this.outgoingApplicationSid;
     const voiceGrant = new VoiceGrant({
-      outgoingApplicationSid,
+      outgoingApplicationSid: outgoingAppSid,
       incomingAllow: true,
     });
 
@@ -77,9 +78,9 @@ class Twilio {
       { identity }
     );
     token.addGrant(voiceGrant);
-    console.log("Access granted with JWT", token.toJwt( ));
+    console.log("Access granted with JWT", token.toJwt());
     return token.toJwt();
-  }
+  };
 }
 
 const instance = new Twilio();
