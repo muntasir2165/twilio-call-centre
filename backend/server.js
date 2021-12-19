@@ -111,6 +111,13 @@ app.post("/enqueue", (req, res) => {
   res.send(response.toString());
 });
 
+app.post("connect-call", (req, res) => {
+  console.log("Connecting call");
+  const response = twilio.redirectCall("icaro");
+  res.type("text/xml");
+  res.send(response.toString());
+});
+
 server.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);
 });

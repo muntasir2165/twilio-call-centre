@@ -55,10 +55,17 @@ class Twilio {
   }
 
   enqueueCall(queueName) {
-    const twim = new VoiceResponse();
-    twim.enqueue(queueName);
+    const twiml = new VoiceResponse();
+    twiml.enqueue(queueName);
 
-    return twim;
+    return twiml;
+  }
+
+  redirectCall(client) {
+    const twiml = new VoiceResponse();
+    twiml.dial().client(client);
+
+    return twiml;
   }
 
   answerCall(sid) {
