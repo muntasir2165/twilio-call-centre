@@ -38,6 +38,9 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("Socket disconnected", socket.id);
   });
+  socket.on("answer-call", (sid) => {
+    console.log("Answering call with sid", sid);
+  });
 });
 
 app.use(bodyParser.json());
