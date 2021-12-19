@@ -61,6 +61,21 @@ class Twilio {
     return twim;
   }
 
+  answerCall(sid) {
+    console.log("answerCall with sid", sid);
+    this.client.calls(sid).update({
+      url: "https://callcenter.loca.lt/connect-call",
+      method: "POST",
+      function(err, call) {
+        console.log("answerCall", call);
+
+        if (err) {
+          console.error("answerCall", err);
+        }
+      },
+    });
+  }
+
   getAccessTokenForVoice = (identity) => {
     console.log(`Access token for ${identity}`);
     const AccessToken = twilio.jwt.AccessToken;
