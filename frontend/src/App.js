@@ -52,7 +52,10 @@ function App() {
 
     socket.client.on("call-new", ({ data: { CallSid, CallStatus } }) => {
       setCalls((draft) => {
-        draft.calls.push({ CallSid, CallStatus });
+        const index = draft.calls.findIndex((call) => call.CallSid === CallSid);
+        if (index === -1) {
+          draft.calls.push({ CallSid, CallStatus });
+        }
       });
     });
 
@@ -61,6 +64,9 @@ function App() {
         const index = draft.calls.findIndex(
           ({ CallSid }) => CallSid === CallSidInput
         );
+        if (index === -1) {
+          return;
+        }
         draft.calls[index].CallStatus = "enqueue";
       });
     });
